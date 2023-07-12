@@ -1,24 +1,17 @@
-#include<QVBoxLayout>
 #include<QLabel>
 #include<QFrame>
 #include<QPushButton>
-#include<QPalette>
-#include<QFont>
-#include<QGraphicsOpacityEffect>
-#include<QPropertyAnimation>
-#include<QSplitter>
-#include<QTableWidget>
 #include<QWidget>
 #include<QStackedWidget>
-#include "fullScreenButton.h"
-#include <QMainWindow>
-#include<QList>
+#include<QGridLayout>
+#include<QMainWindow>
+
 
 class MainWindow : public QMainWindow 
 {
     Q_OBJECT
 public:
-    MainWindow( QWidget *parent = nullptr );
+    MainWindow( QWidget *parent = nullptr);
 public slots:
     void handleButtonClicked();
 private:
