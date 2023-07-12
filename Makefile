@@ -54,13 +54,17 @@ OBJECTS_DIR   = ./
 
 SOURCES       = main.cpp \
 		window.cpp \
-		custombutton.cpp moc_window.cpp \
-		moc_custombutton.cpp
+		custombutton.cpp \
+		tablewidget.cpp moc_window.cpp \
+		moc_custombutton.cpp \
+		moc_tablewidget.cpp
 OBJECTS       = main.o \
 		window.o \
 		custombutton.o \
+		tablewidget.o \
 		moc_window.o \
-		moc_custombutton.o
+		moc_custombutton.o \
+		moc_tablewidget.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -145,9 +149,11 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		app.pro window.h \
-		custombutton.h main.cpp \
+		custombutton.h \
+		tablewidget.h main.cpp \
 		window.cpp \
-		custombutton.cpp
+		custombutton.cpp \
+		tablewidget.cpp
 QMAKE_TARGET  = app
 DESTDIR       = 
 TARGET        = app
@@ -345,8 +351,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents window.h custombutton.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp window.cpp custombutton.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents window.h custombutton.h tablewidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp window.cpp custombutton.cpp tablewidget.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -377,19 +383,24 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_window.cpp moc_custombutton.cpp
+compiler_moc_header_make_all: moc_window.cpp moc_custombutton.cpp moc_tablewidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_window.cpp moc_custombutton.cpp
+	-$(DEL_FILE) moc_window.cpp moc_custombutton.cpp moc_tablewidget.cpp
 moc_window.cpp: window.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/cyprian/Desktop/Test/Second_task/repozytorium/Test_button/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/cyprian/Desktop/Test/Second_task/repozytorium/Test_button -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include window.h -o moc_window.cpp
 
 moc_custombutton.cpp: custombutton.h \
-		window.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/cyprian/Desktop/Test/Second_task/repozytorium/Test_button/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/cyprian/Desktop/Test/Second_task/repozytorium/Test_button -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include custombutton.h -o moc_custombutton.cpp
+
+moc_tablewidget.cpp: tablewidget.h \
+		custombutton.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/cyprian/Desktop/Test/Second_task/repozytorium/Test_button/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/cyprian/Desktop/Test/Second_task/repozytorium/Test_button -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include tablewidget.h -o moc_tablewidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -410,19 +421,25 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 main.o: main.cpp window.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
-window.o: window.cpp custombutton.h \
-		window.h
+window.o: window.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o window.o window.cpp
 
-custombutton.o: custombutton.cpp custombutton.h \
-		window.h
+custombutton.o: custombutton.cpp custombutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o custombutton.o custombutton.cpp
+
+tablewidget.o: tablewidget.cpp tablewidget.h \
+		custombutton.h \
+		window.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tablewidget.o tablewidget.cpp
 
 moc_window.o: moc_window.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_window.o moc_window.cpp
 
 moc_custombutton.o: moc_custombutton.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_custombutton.o moc_custombutton.cpp
+
+moc_tablewidget.o: moc_tablewidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tablewidget.o moc_tablewidget.cpp
 
 ####### Install
 

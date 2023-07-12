@@ -3,7 +3,7 @@
 #include <QLayout>
 #include <QRect>
 #include <QPushButton>
-#include <window.h>
+#include <tablewidget.h>
 
 
 
@@ -11,5 +11,5 @@ class customButton: public QPushButton
 {
   Q_OBJECT
   public:
-    customButton( const QString& text, const QSize& size, MainWindow* mainWindow = nullptr );
+    customButton( const QString& text, const QSize& size, tableWidget* tablewidget = nullptr);
 };
