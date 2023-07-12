@@ -11,5 +11,5 @@ class customButton: public QPushButton
 {
     Q_OBJECT
     public:
-        customButton(const QString& text, const QSize& size, MainWindow* mainWindow = nullptr);
+        customButton( const QString& text, const QSize& size, MainWindow* mainWindow = nullptr );
 };

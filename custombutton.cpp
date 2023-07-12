@@ -6,5 +6,5 @@ customButton::customButton( const QString &text, const QSize &size, MainWindow* 
 {
     setText(text);
     setFixedSize(size);
-    connect(this, &QPushButton::clicked, mainWindow, &MainWindow::handleButtonClicked);
+    connect( this, &QPushButton::clicked, mainWindow, &MainWindow::handleButtonClicked );
 }
