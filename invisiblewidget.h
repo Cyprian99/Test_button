@@ -12,7 +12,7 @@ class invisibleWidget : public QWidget
 {
   Q_OBJECT
   public: 
-    invisibleWidget( QWidget *parent = nullptr, QWidget *widget = nullptr, QStackedWidget *stackedWidget = nullptr, QGridLayout *fullScreenLayout = nullptr, QGridLayout *placeholderLayout = nullptr );
+    invisibleWidget( QWidget *parent = nullptr, QWidget *widget = nullptr, QStackedWidget *stackedWidget = nullptr, QHBoxLayout *fullScreenLayout = nullptr, QHBoxLayout *placeholderLayout = nullptr );
   public slots:
     void handleButtonClicked();
   signals:
@@ -21,8 +21,8 @@ class invisibleWidget : public QWidget
     QWidget* m_widget;
     customButton* m_button;
     QStackedWidget* m_stackedWidget;
-    QGridLayout* m_fullScreenLayout;
-    QGridLayout* m_placeholderLayout;
+    QHBoxLayout* m_fullScreenLayout;
+    QHBoxLayout* m_placeholderLayout;
     bool isFullScreen;
     QWidget* placeholder;
 };
