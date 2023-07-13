@@ -1,3 +1,5 @@
+#ifndef WINDOW_H
+#define WINDOW_H
 #include<QLabel>
 #include<QFrame>
 #include<QPushButton>
@@ -12,3 +14,4 @@ class MainWindow : public QMainWindow
 public:
   MainWindow( QWidget *parent = nullptr);
 };
+#endif //WINDOW_H

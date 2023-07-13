@@ -1,5 +1,6 @@
 #include "window.h"
 #include "tablewidget.h"
+#include "invisiblewidget.h"
 #include <QDebug>
 #include <QRect>
 #include <QPushButton>
@@ -23,22 +24,25 @@ MainWindow::MainWindow( QWidget *parent ) : QMainWindow(parent)
   right_bottom_frame->setFrameShape(QFrame::Panel);
   right_bottom_frame->setObjectName( "right_bottom_frame" );
   initialLayout->addWidget( left_frame, 0, 0, 2, 1 );
-  initialLayout->addWidget( right_top_frame, 0, 1 );
-  initialLayout->addWidget( right_bottom_frame, 1, 1 );
+  initialLayout->addWidget( right_top_frame, 0, 1, 1, 1);
+  initialLayout->addWidget( right_bottom_frame, 1, 1, 1, 1 );
 
   auto nested_right_top_layout = new QGridLayout(initialLayoutWidget);
   auto right_top_left_frame = new QFrame(initialLayoutWidget);
   right_top_left_frame->setFrameShape(QFrame::Panel);
   right_top_left_frame->setObjectName( "right_top_left_frame" );
-  nested_right_top_layout->addWidget( right_top_left_frame,1,0 );
+  auto right_top_right_frame = new QFrame(initialLayoutWidget);
+  right_top_right_frame->setFrameShape(QFrame::Panel);
+  right_top_right_frame->setObjectName( "right_top_right_frame" );
+  nested_right_top_layout->addWidget( right_top_left_frame, 1, 0 );
+  nested_right_top_layout->addWidget( right_top_right_frame, 1, 1);
   right_top_frame->setLayout(nested_right_top_layout);
+  auto right_layout = new QGridLayout(right_top_right_frame);
 
-  //creating placeholder 
-  auto placeholder = new QWidget();
-  nested_right_top_layout->addWidget( placeholder, 1, 1 );
-  auto placeholderLayout = new QGridLayout(placeholder );
-  auto twidget = new tableWidget( stackedWidget, fullScreenLayout, placeholderLayout, stackedWidget );
-  placeholderLayout->addWidget( twidget, 0, 0 );
+  auto twidget = new tableWidget( right_top_right_frame );
+  right_layout->addWidget( twidget, 1, 1);
+
+  auto iWidget = new invisibleWidget( right_top_right_frame, twidget, stackedWidget, fullScreenLayout, right_layout );
 
   auto nested_right_bottom_layout = new QGridLayout(initialLayoutWidget);
   auto right_bottom_left_frame = new QFrame(initialLayoutWidget);

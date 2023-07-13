@@ -1,10 +1,9 @@
 #include "custombutton.h"
-#include <QDebug>
+#include "invisiblewidget.h"
 
-customButton::customButton( const QString &text, const QSize &size, tableWidget* tablewidget )
-: QPushButton(tablewidget)
+customButton::customButton( const QString &text, const QSize &size, QWidget* parent )
+: QPushButton(text, parent)
 {
   setText(text);
   setFixedSize(size);
-  connect( this, &QPushButton::clicked, tablewidget, &tableWidget::handleButtonClicked );
 }
