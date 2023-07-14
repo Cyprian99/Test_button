@@ -12,6 +12,11 @@ MainWindow::MainWindow( QWidget *parent ) : QMainWindow(parent)
   //creating initialLayout
   auto initialLayoutWidget = new QWidget(this);
   auto initialLayout = new QGridLayout(initialLayoutWidget);
+
+  stackedWidget->addWidget(initialLayoutWidget);
+  stackedWidget->setCurrentIndex(0);
+  setCentralWidget(stackedWidget);
+  
   auto left_frame = new QFrame(initialLayoutWidget);
   left_frame->setFrameShape(QFrame::Panel);
   left_frame->setObjectName( "left_frame" );
@@ -38,6 +43,7 @@ MainWindow::MainWindow( QWidget *parent ) : QMainWindow(parent)
 
   //adding widget with labels array
   auto twidget = new tableWidget( right_top_right_frame );
+  right_top_right_frame->setMinimumSize(170,230);
 
   //adding widget with button handling and moving twidget
   auto eWidget = new expanderWidget( twidget, twidget, stackedWidget);
@@ -58,10 +64,6 @@ MainWindow::MainWindow( QWidget *parent ) : QMainWindow(parent)
   auto left_label = new QLabel( "Left Frame", left_frame );
   auto right_top_label = new QLabel( "Top Frame", right_top_left_frame );
   auto right_bottom_label = new QLabel( "Bottom Frame", right_bottom_left_frame );
-
-  stackedWidget->addWidget(initialLayoutWidget);
-  stackedWidget->setCurrentIndex(0);
-  setCentralWidget(stackedWidget);
 
   this->setWindowTitle("Window");
   this->resize(800,600);

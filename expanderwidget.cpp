@@ -6,11 +6,12 @@
 expanderWidget::expanderWidget ( QWidget *parent, QWidget *widget, QStackedWidget *stackedWidget ) :
   QWidget(parent), m_widget(widget), m_stackedWidget(stackedWidget), isFullScreen(false)
 {
-  m_currentIndex=m_stackedWidget->currentIndex()+1;
+  m_currentIndex = m_stackedWidget->currentIndex();
   qDebug()<<m_currentIndex;
-  m_fullScreenWidget= new QWidget();
+  m_fullScreenWidget = new QWidget();
   m_fullScreenLayout = new QHBoxLayout(m_fullScreenWidget);
   m_placeholderLayout = new QHBoxLayout(m_widget);
+  m_placeholderLayout->addWidget(m_widget);
   m_button = new customButton( QString("\\"), QSize(20,20), m_widget );
   connect( m_button, &QPushButton::clicked, this, &expanderWidget::handleButtonClicked );
 }
@@ -34,7 +35,6 @@ void expanderWidget::handleButtonClicked()
     qDebug()<<m_stackedWidget->count();
     m_placeholderLayout->addWidget(m_widget);
     m_stackedWidget->setCurrentIndex(m_currentIndex); 
-   
     isFullScreen = !isFullScreen;
     qDebug()<<"Zmniejszam!";
   }
