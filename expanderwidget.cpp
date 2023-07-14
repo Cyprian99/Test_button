@@ -1,16 +1,16 @@
 #include <QPushButton>
 #include "custombutton.h"
-#include "invisiblewidget.h"
+#include "expanderwidget.h"
 #include <QDebug>
 
-invisibleWidget::invisibleWidget ( QWidget *parent, QWidget *widget, QStackedWidget *stackedWidget, QHBoxLayout *fullScreenLayout, QHBoxLayout *placeholderLayout ) :
+expanderWidget::expanderWidget ( QWidget *parent, QWidget *widget, QStackedWidget *stackedWidget, QHBoxLayout *fullScreenLayout, QHBoxLayout *placeholderLayout ) :
   QWidget(parent), m_widget(widget), m_stackedWidget(stackedWidget), m_fullScreenLayout(fullScreenLayout), m_placeholderLayout(placeholderLayout), isFullScreen(false)
 {
   m_button = new customButton( QString("\\"), QSize(20,20), m_widget );
-  connect( m_button, &QPushButton::clicked, this, &invisibleWidget::handleButtonClicked );
+  connect( m_button, &QPushButton::clicked, this, &expanderWidget::handleButtonClicked );
 }
 
-void invisibleWidget::handleButtonClicked()
+void expanderWidget::handleButtonClicked()
 {
   if( !isFullScreen )
   {

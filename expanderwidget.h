@@ -1,5 +1,5 @@
-#ifndef INVISIBLEWIDGET_H
-#define INVISIBLEWIDGET_H
+#ifndef EXPANDERWIDGET_H
+#define EXPANDERWIDGET_H
 #include <QWidget>
 #include <QStackedWidget>
 #include <QGridLayout>
@@ -8,11 +8,11 @@
 
 class customButton;
 
-class invisibleWidget : public QWidget
+class expanderWidget : public QWidget
 {
   Q_OBJECT
   public: 
-    invisibleWidget( QWidget *parent = nullptr, QWidget *widget = nullptr, QStackedWidget *stackedWidget = nullptr, QHBoxLayout *fullScreenLayout = nullptr, QHBoxLayout *placeholderLayout = nullptr );
+    expanderWidget( QWidget *parent = nullptr, QWidget *widget = nullptr, QStackedWidget *stackedWidget = nullptr, QHBoxLayout *fullScreenLayout = nullptr, QHBoxLayout *placeholderLayout = nullptr );
   public slots:
     void handleButtonClicked();
   signals:
@@ -24,6 +24,5 @@ class invisibleWidget : public QWidget
     QHBoxLayout* m_fullScreenLayout;
     QHBoxLayout* m_placeholderLayout;
     bool isFullScreen;
-    QWidget* placeholder;
 };
-#endif //INVISIBLEWIDGET_H
+#endif //EXPANDERWIDGET_H

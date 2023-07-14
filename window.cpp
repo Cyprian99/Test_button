@@ -1,6 +1,6 @@
 #include "window.h"
 #include "tablewidget.h"
-#include "invisiblewidget.h"
+#include "expanderwidget.h"
 #include <QDebug>
 #include <QRect>
 #include <QPushButton>
@@ -41,11 +41,11 @@ MainWindow::MainWindow( QWidget *parent ) : QMainWindow(parent)
   right_top_right_frame->setLayout(right_layout);
 
   //adding widget with labels array
-  auto twidget = new tableWidget( right_top_right_frame );
+  auto twidget = new tableWidget( right_top_frame );
   right_layout->addWidget(twidget);
 
   //adding widget with button handling and moving twidget
-  auto iWidget = new invisibleWidget( twidget, twidget, stackedWidget, fullScreenLayout, right_layout );
+  auto iWidget = new expanderWidget( twidget, twidget, stackedWidget, fullScreenLayout, right_layout );
   right_layout->addWidget(iWidget);
 
   auto nested_right_bottom_layout = new QGridLayout(initialLayoutWidget);

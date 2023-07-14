@@ -5,7 +5,7 @@
 #include <QLayout>
 #include <QRect>
 #include <QPushButton>
-#include "invisiblewidget.h"
+#include "expanderwidget.h"
 
 class invisibleWidget;
 

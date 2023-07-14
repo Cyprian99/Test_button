@@ -3,11 +3,11 @@ SOURCES += main.cpp \
             window.cpp \
             custombutton.cpp \
             tablewidget.cpp \
-            invisiblewidget.cpp
+            expanderwidget.cpp
 HEADERS += window.h \
             custombutton.h \
             tablewidget.h \ 
-            invisiblewidget.h
+            expanderwidget.h
 LIBS += -lQt5Gui 
 QT += widgets 
 CONFIG+=debug
