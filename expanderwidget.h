@@ -12,7 +12,7 @@ class expanderWidget : public QWidget
 {
   Q_OBJECT
   public: 
-    expanderWidget( QWidget *parent = nullptr, QWidget *widget = nullptr, QStackedWidget *stackedWidget = nullptr, QHBoxLayout *fullScreenLayout = nullptr, QHBoxLayout *placeholderLayout = nullptr );
+    expanderWidget( QWidget *parent = nullptr, QWidget *widget = nullptr, QStackedWidget *stackedWidget = nullptr, QHBoxLayout *placeholderLayout = nullptr );
   public slots:
     void handleButtonClicked();
   signals:
@@ -23,6 +23,7 @@ class expanderWidget : public QWidget
     QStackedWidget* m_stackedWidget;
     QHBoxLayout* m_fullScreenLayout;
     QHBoxLayout* m_placeholderLayout;
+    int m_currentIndex;
     bool isFullScreen;
 };
 #endif //EXPANDERWIDGET_H

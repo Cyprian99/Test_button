@@ -436,7 +436,9 @@ main.o: main.cpp window.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 window.o: window.cpp window.h \
-		tablewidget.h
+		tablewidget.h \
+		expanderwidget.h \
+		custombutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o window.o window.cpp
 
 custombutton.o: custombutton.cpp custombutton.h \
