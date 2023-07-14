@@ -3,11 +3,14 @@
 #include "expanderwidget.h"
 #include <QDebug>
 
-expanderWidget::expanderWidget ( QWidget *parent, QWidget *widget, QStackedWidget *stackedWidget, QHBoxLayout *placeholderLayout ) :
-  QWidget(parent), m_widget(widget), m_stackedWidget(stackedWidget), m_placeholderLayout(placeholderLayout), isFullScreen(false)
+expanderWidget::expanderWidget ( QWidget *parent, QWidget *widget, QStackedWidget *stackedWidget ) :
+  QWidget(parent), m_widget(widget), m_stackedWidget(stackedWidget), isFullScreen(false)
 {
-  m_currentIndex=m_stackedWidget->currentIndex();
-  m_fullScreenLayout = new QHBoxLayout(m_widget);
+  m_currentIndex=m_stackedWidget->currentIndex()+1;
+  qDebug()<<m_currentIndex;
+  m_fullScreenWidget= new QWidget();
+  m_fullScreenLayout = new QHBoxLayout(m_fullScreenWidget);
+  m_placeholderLayout = new QHBoxLayout(m_widget);
   m_button = new customButton( QString("\\"), QSize(20,20), m_widget );
   connect( m_button, &QPushButton::clicked, this, &expanderWidget::handleButtonClicked );
 }
@@ -17,7 +20,7 @@ void expanderWidget::handleButtonClicked()
   if( !isFullScreen )
   {
     m_fullScreenLayout->addWidget(m_widget);
-    m_stackedWidget->addWidget(m_widget);
+    m_stackedWidget->addWidget(m_fullScreenWidget);
     int numberOfWidgets = m_stackedWidget->count();
     qDebug()<<numberOfWidgets;
     m_stackedWidget->setCurrentIndex(numberOfWidgets-1);
@@ -27,10 +30,11 @@ void expanderWidget::handleButtonClicked()
   }
   else
   {
-    int 
     emit goFull(false);
+    qDebug()<<m_stackedWidget->count();
     m_placeholderLayout->addWidget(m_widget);
     m_stackedWidget->setCurrentIndex(m_currentIndex); 
+   
     isFullScreen = !isFullScreen;
     qDebug()<<"Zmniejszam!";
   }

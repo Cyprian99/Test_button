@@ -12,8 +12,6 @@ MainWindow::MainWindow( QWidget *parent ) : QMainWindow(parent)
   //creating initialLayout
   auto initialLayoutWidget = new QWidget(this);
   auto initialLayout = new QGridLayout(initialLayoutWidget);
-  //auto fullScreenWidget = new QWidget(this);
-  //auto fullScreenLayout = new QHBoxLayout(fullScreenWidget);
   auto left_frame = new QFrame(initialLayoutWidget);
   left_frame->setFrameShape(QFrame::Panel);
   left_frame->setObjectName( "left_frame" );
@@ -37,16 +35,13 @@ MainWindow::MainWindow( QWidget *parent ) : QMainWindow(parent)
   nested_right_top_layout->addWidget( right_top_left_frame, 1, 0 );
   nested_right_top_layout->addWidget( right_top_right_frame, 1, 1 );
   right_top_frame->setLayout(nested_right_top_layout);
-  auto right_layout = new QHBoxLayout(right_top_right_frame);
-  right_top_right_frame->setLayout(right_layout);
 
   //adding widget with labels array
-  auto twidget = new tableWidget( right_top_frame );
-  right_layout->addWidget(twidget);
+  auto twidget = new tableWidget( right_top_right_frame );
 
   //adding widget with button handling and moving twidget
-  auto iWidget = new expanderWidget( twidget, twidget, stackedWidget, right_layout );
-  //right_layout->addWidget(iWidget);
+  auto eWidget = new expanderWidget( twidget, twidget, stackedWidget);
+  right_top_right_frame->setLayout(eWidget->m_placeholderLayout);
 
   auto nested_right_bottom_layout = new QGridLayout(initialLayoutWidget);
   auto right_bottom_left_frame = new QFrame(initialLayoutWidget);
@@ -65,7 +60,6 @@ MainWindow::MainWindow( QWidget *parent ) : QMainWindow(parent)
   auto right_bottom_label = new QLabel( "Bottom Frame", right_bottom_left_frame );
 
   stackedWidget->addWidget(initialLayoutWidget);
-  //stackedWidget->addWidget(fullScreenWidget);
   stackedWidget->setCurrentIndex(0);
   setCentralWidget(stackedWidget);
 

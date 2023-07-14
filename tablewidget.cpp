@@ -23,7 +23,7 @@ tableWidget::tableWidget( QWidget* parent ) : QWidget(parent)
   gLayout->addWidget( label8, 3, 2 );
   setLayout(gLayout);
   setMinimumSize(165, 230); 
-  gLayout->setContentsMargins(0,0,0,0);
+  gLayout->setContentsMargins(20,20,20,20);
 }
 void tableWidget::handlegoFull()
 {
